@@ -1,15 +1,17 @@
 const express = require('express');
 const app = express();
 const beerRouter = require('./routes/beerRouter');
+const breweryRouter = require('./routes/breweryRouter');
 const mongoose = require('mongoose');
 app.use(express.urlencoded({ extened: true }));
 app.use(express.json());
 
 
-
 ////////////////////////////////////
 
 app.use('/api/beers', beerRouter);
+
+app.use('/api/brewerys', breweryRouter);
 
 app.use('/', function(req, res) {
     res.send('Hello!');
