@@ -1,9 +1,9 @@
 const express = require('express');
 const breweryRouter = express.Router();
-const brewery = require('../models/brewery');
+const Brewery = require('../models/brewery');
 
 breweryRouter.get('/:brewery_id', (req, res) => {
-    brewery.findById(req.params.brewery_id, (err, brewery) => {
+    Brewery.findById(req.params.brewery_id, (err, brewery) => {
         if(err) {
             res.status(400).send(err);
         } else {
@@ -13,7 +13,7 @@ breweryRouter.get('/:brewery_id', (req, res) => {
 });
 
 breweryRouter.put('/:brewery_id', (req, res) => {
-    brewery.findById(req.params.brewery_id, (err, brewery) => {
+    Brewery.findById(req.params.brewery_id, (err, brewery) => {
         if (err) {
             res.send(err);
         }
@@ -32,7 +32,7 @@ breweryRouter.put('/:brewery_id', (req, res) => {
 });
 
 breweryRouter.delete('/:brewery_id', (req, res) => {
-    brewery.deleteOne({
+    Brewery.deleteOne({
         _id: req.params.brewery_id
     }, (err) => {
         if (err) {
@@ -44,7 +44,7 @@ breweryRouter.delete('/:brewery_id', (req, res) => {
 });
 
 breweryRouter.get('/', (req, res) => {
-    brewery.find((err, brewerys) => {
+    Brewery.find((err, brewerys) => {
         if(err) {
             res.send(err);
         } else {
@@ -54,7 +54,7 @@ breweryRouter.get('/', (req, res) => {
 });
 
 breweryRouter.post('/', (req, res) =>{
-    let brewery = new brewery();
+    let brewery = new Brewery();
     brewery.name = req.body.name;
     brewery.rating = req.body.rating;
     brewery.location = req.body.location;
